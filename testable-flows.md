@@ -9,5 +9,4 @@
 | Verify search can be done via Go button | Results should be displayed as per the input provided |
 | Verify search can be done via Enter key | Results should be displayed as per the input provided |
 | Verify repo name clicking redirect clicking on repo name | On clicking repo name it should redirect to Github actual repository |
-| Verify no duplicates are present on the list | Repo list should match GitHub user repositories
- |
+| Verify no duplicates are present on the list | Repo list should match GitHub user repositories |
