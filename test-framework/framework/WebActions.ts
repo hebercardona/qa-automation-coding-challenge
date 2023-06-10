@@ -12,9 +12,23 @@ export class WebActions {
         await this.page.locator(locator).click();
     }
 
-    async enterElementText(locator: string, text: string): Promise<void> {
+    async enterText(locator: string, text: string): Promise<void> {
         await this.page.locator(locator).waitFor();
         await this.page.fill(locator, text);
+    }
+
+    async getInnerText(locator: string): Promise<string> {
+        await this.page.locator(locator).waitFor();
+        return this.page.locator(locator).innerText();
+    }
+
+    async getElements(locator: string): Promise<Locator[]> {
+        let elementList: Locator[] = [];
+        const elements = this.page.locator(locator);
+        for (let i = 0; i < await elements.count(); i++) {
+            elementList.push(elements.nth(i));
+        }
+        return elementList;
     }
 
 }
