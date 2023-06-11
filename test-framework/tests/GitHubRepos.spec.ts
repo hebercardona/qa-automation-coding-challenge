@@ -30,6 +30,20 @@ test('Verify repos are displayed when username is valid and has repos available'
     });
 });
 
+test('Verify search works with enter key', async ({ searchPage, page }) => {
+    let searchFeedbackMsg: string;
+    await test.step('Enter invalid GitHub Username', async() => {
+        await searchPage.enterGitHubUsername('hebercardona');
+    });
+    await test.step('Press enter and verify search results and feedback message', async() => {
+        await page.keyboard.press('Enter');
+        searchFeedbackMsg = await searchPage.getSearchFeedbackMsg();
+        expect(searchFeedbackMsg, 'Feedback Message not displayed on search with enter key').toContain('Success!');
+        const repos = await searchPage.getRespositoryList();
+        expect(repos.length, 'Repositories were expected for this user').toBeGreaterThan(0);
+    });
+});
+
 test('Verify clicking on any repo redirects to the correct GitHub url', async ({ searchPage, context }) => {
     let searchFeedbackMsg: string;
     let repository: Repository;
