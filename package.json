@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ui-test": "npm start && npx playwright test",
-    "pw-test": "npx playwright test --headed"
+    "test-headed": "npx playwright test --headed && npx playwright show-report",
+    "test-headless": "npx playwright test && npx playwright show-report"
   },
   "eslintConfig": {
     "extends": "react-app"
