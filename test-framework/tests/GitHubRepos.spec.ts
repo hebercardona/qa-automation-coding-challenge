@@ -54,7 +54,7 @@ test('Verify clicking on any repo redirects to the correct GitHub url', async ({
     });
 });
 
-test.only('Verify repository description matches GitHub repository description', async ({ searchPage, context }) => {
+test('Verify repository description matches GitHub repository description', async ({ searchPage, context }) => {
     let repository: Repository;
     await test.step('Enter invalid GitHub Username', async() => {
         await searchPage.enterGitHubUsername('hebercardona');
@@ -71,5 +71,20 @@ test.only('Verify repository description matches GitHub repository description',
         const githubPage = new GitHubPage(newPage);
         const github_repo_description = await githubPage.getRepoDescription();
         expect(github_repo_description, 'Respository description did not match.').toEqual(repository.description);
+    });
+});
+
+test('Verify repository amount label matches repository list item count', async ({ searchPage, context }) => {
+    let repository: Repository;
+    await test.step('Enter invalid GitHub Username', async() => {
+        await searchPage.enterGitHubUsername('hebercardona');
+    });
+    await test.step('Click Go button', async() => {
+        await searchPage.clickGoButton();
+    });
+    await test.step('Get output repository list and compare with the amount label', async() => {
+        const repositories = await searchPage.getRespositoryList();
+        const amountLabel = await searchPage.getReposAmount();
+        expect(repositories.length, 'Repositories list count and amount label does not match').toEqual(amountLabel);
     });
 });
