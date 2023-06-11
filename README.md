@@ -47,3 +47,16 @@ Help Adam gain confidence in further development by automatically testing the mo
 - Please submit a link to your finished repository when you are ready
 
 ## Good luck and happy coding! :)
+
+## UI Tests
+
+Playwright with TypeScript was choosen as the tool/language to write UI automated tests.
+Test Project folder was created on the same repository. The folder is called test-framework.
+
+## How to run the tests
+
+1. Clone the repository and install dependencies `npm install`
+2. Start app `npm run start`
+3. Open new terminal to run tests
+    - To run tests in headed mode: `npm run test-headed`
+    - To run tests in headless mode: `npm run test-headed`
