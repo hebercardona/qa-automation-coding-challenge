@@ -18,7 +18,7 @@ export class WebActions {
     }
 
     async getInnerText(locator: string): Promise<string> {
-        await this.page.locator(locator).waitFor();
+        await this.page.locator(locator).first().waitFor();
         return this.page.locator(locator).innerText();
     }
 
@@ -29,6 +29,10 @@ export class WebActions {
             elementList.push(elements.nth(i));
         }
         return elementList;
+    }
+
+    async waitFor(locator: string): Promise<void> {
+        await this.page.locator(locator).first().waitFor();
     }
 
 }
